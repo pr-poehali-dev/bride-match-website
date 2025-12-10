@@ -84,11 +84,22 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
       <div 
-        className="relative h-[70vh] bg-cover bg-center bg-no-repeat flex items-center justify-center"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://cdn.poehali.dev/projects/8ef30259-3f03-48a0-9e3b-c6a8258072d4/files/b40841f1-86c6-4fc2-9281-dfd59aeed5c7.jpg')`
-        }}
+        className="relative h-[70vh] bg-background flex items-center justify-center overflow-hidden"
       >
+        <div className="absolute inset-0 flex items-start justify-center pt-8">
+          <div className="relative w-full max-w-2xl aspect-square">
+            <img 
+              src="https://cdn.poehali.dev/projects/8ef30259-3f03-48a0-9e3b-c6a8258072d4/files/e3a91e57-af3a-4a19-b77c-cc96b07f7c92.jpg"
+              alt="Лариса Гузеева"
+              className="absolute inset-0 w-full h-full object-cover animate-[talking_1s_ease-in-out_infinite]"
+            />
+            <img 
+              src="https://cdn.poehali.dev/projects/8ef30259-3f03-48a0-9e3b-c6a8258072d4/files/245a7786-5245-4119-91b0-d7f75ef5a54d.jpg"
+              alt="Лариса Гузеева говорит"
+              className="absolute inset-0 w-full h-full object-cover animate-[talking-reverse_1s_ease-in-out_infinite]"
+            />
+          </div>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
         
         <div className="relative z-10 text-center px-4 animate-fade-in">
