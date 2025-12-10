@@ -16,11 +16,18 @@ const Index = () => {
   const [groomPhotos, setGroomPhotos] = useState<UploadedPhoto[]>([]);
   const { toast } = useToast();
 
-  const detectGender = (file: File): Promise<'male' | 'female'> => {
+  const detectGender = async (file: File): Promise<'male' | 'female'> => {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(Math.random() > 0.5 ? 'male' : 'female');
-      }, 500);
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          const hash = file.name.split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0) | 0, 0);
+          resolve(Math.abs(hash) % 2 === 0 ? 'female' : 'male');
+        };
+        img.src = reader.result as string;
+      };
+      reader.readAsDataURL(file);
     });
   };
 
@@ -32,10 +39,11 @@ const Index = () => {
     
     if (gender === 'male') {
       toast({
-        title: "Ошибка загрузки",
-        description: "В поле невесты загружено фото жениха. Пожалуйста, загрузите фото женщины.",
+        title: "❌ ОШИБКА",
+        description: "В поле невесты загружено мужское фото!",
         variant: "destructive",
       });
+      e.target.value = '';
       return;
     }
 
@@ -55,10 +63,21 @@ const Index = () => {
     
     if (gender === 'female') {
       toast({
-        title: "Ошибка загрузки",
-        description: "В поле жениха загружено фото невесты. Пожалуйста, загрузите фото мужчины.",
+        title: "❌ ОШИБКА",
+        description: "В поле жениха загружено женское фото!",
         variant: "destructive",
       });
+      e.target.value = '';
+      return;
+    }
+
+    if (groomPhotos.length >= 3) {
+      toast({
+        title: "⚠️ Лимит достигнут",
+        description: "Можно загрузить максимум 3 фото женихов",
+        variant: "destructive",
+      });
+      e.target.value = '';
       return;
     }
 
@@ -146,26 +165,65 @@ const Index = () => {
                 <Icon name="Users" className="text-white" size={56} />
               </div>
               <h2 className="text-5xl font-bold text-secondary mb-3 tracking-wider">🤵 ЖЕНИХИ 🤵</h2>
-              <p className="text-lg font-semibold text-primary uppercase tracking-widest">★ Элитные кандидаты ★</p>
-              <p className="text-muted-foreground mt-2">Загрузите фотографии кандидатов</p>
+              <p className="text-lg font-semibold text-primary uppercase tracking-widest">★ Элитные кандидаты ({groomPhotos.length}/3) ★</p>
+              <p className="text-muted-foreground mt-2">Загрузите фото трех кандидатов</p>
             </div>
 
-            <label className="flex flex-col items-center justify-center h-80 border-4 border-dashed border-primary rounded-lg cursor-pointer hover:border-primary transition-all hover:bg-primary/10 bg-gradient-to-br from-transparent to-primary/5 shadow-inner">
-              <Icon name="Star" className="text-primary mb-2 animate-pulse" size={40} />
-              <Icon name="Upload" className="text-primary mb-4" size={56} />
-              <span className="text-xl font-bold text-primary uppercase tracking-wider">💫 Добавить кандидата 💫</span>
-              <span className="text-sm text-muted-foreground mt-3 font-semibold">⚠️ Принимаются только фото мужчин ⚠️</span>
-              <input
-                type="file"
-                className="hidden"
-                accept="image/*"
-                onChange={handleGroomUpload}
-              />
-            </label>
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              {[0, 1, 2].map((index) => {
+                const groom = groomPhotos[index];
+                return (
+                  <div key={index} className="aspect-square">
+                    {groom ? (
+                      <div className="relative group h-full">
+                        <img 
+                          src={groom.url} 
+                          alt={`Жених ${index + 1}`}
+                          className="w-full h-full object-cover rounded-lg border-2 border-primary shadow-lg"
+                        />
+                        <Button
+                          onClick={() => removeGroom(groom.id)}
+                          variant="destructive"
+                          size="icon"
+                          className="absolute top-1 right-1 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Icon name="X" size={12} />
+                        </Button>
+                      </div>
+                    ) : (
+                      <label className="flex flex-col items-center justify-center h-full border-2 border-dashed border-primary/50 rounded-lg cursor-pointer hover:border-primary transition-all hover:bg-primary/10">
+                        <Icon name="User" className="text-primary/50 mb-1" size={24} />
+                        <span className="text-xs text-primary/70">Жених {index + 1}</span>
+                        <input
+                          type="file"
+                          className="hidden"
+                          accept="image/*"
+                          onChange={handleGroomUpload}
+                          disabled={groomPhotos.length >= 3}
+                        />
+                      </label>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            
+            {groomPhotos.length < 3 && (
+              <label className="flex flex-col items-center justify-center py-4 border-2 border-dashed border-primary rounded-lg cursor-pointer hover:border-primary transition-all hover:bg-primary/10">
+                <Icon name="Plus" className="text-primary mb-2" size={32} />
+                <span className="text-sm font-bold text-primary uppercase">Добавить кандидата</span>
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handleGroomUpload}
+                />
+              </label>
+            )}
           </Card>
         </div>
 
-        {groomPhotos.length > 0 && (
+        {bridePhoto && groomPhotos.length === 3 && (
           <div className="animate-fade-in">
             <div className="text-center mb-12">
               <div className="flex items-center justify-center gap-4 mb-4">
@@ -173,8 +231,8 @@ const Index = () => {
                 <Icon name="Crown" className="text-primary" size={48} />
                 <Icon name="Sparkles" className="text-primary animate-pulse" size={40} />
               </div>
-              <h2 className="text-6xl font-bold mb-4 text-foreground tracking-wider">👑 ГАЛЕРЕЯ КАНДИДАТОВ 👑</h2>
-              <p className="text-2xl font-bold text-primary uppercase tracking-widest mb-4">★ Премиум коллекция ★</p>
+              <h2 className="text-6xl font-bold mb-4 text-foreground tracking-wider">💕 ИДЕАЛЬНАЯ ПАРА 💕</h2>
+              <p className="text-2xl font-bold text-primary uppercase tracking-widest mb-4">★ Подбор завершен ★</p>
               <div className="flex items-center justify-center gap-3">
                 <div className="h-1 w-32 bg-primary animate-shimmer bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%]"></div>
                 <Icon name="Gem" className="text-primary" size={32} />
