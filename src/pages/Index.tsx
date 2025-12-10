@@ -92,29 +92,40 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
         
         <div className="relative z-10 text-center px-4 animate-fade-in">
-          <h1 className="text-7xl md:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
-            Давай поженим!
+          <div className="mb-8 flex items-center justify-center gap-4">
+            <Icon name="Sparkles" className="text-primary animate-pulse" size={48} />
+            <Icon name="Crown" className="text-primary" size={56} />
+            <Icon name="Sparkles" className="text-primary animate-pulse" size={48} />
+          </div>
+          <h1 className="text-8xl md:text-9xl font-bold text-white mb-4 drop-shadow-2xl tracking-wider">
+            💎 ДАВАЙ ПОЖЕНИМ! 💎
           </h1>
-          <p className="text-2xl md:text-3xl text-white/95 font-light tracking-wide drop-shadow-lg">
-            Элитный подбор достойных кандидатов
+          <p className="text-3xl md:text-4xl text-primary font-bold tracking-widest drop-shadow-lg mb-2 animate-shimmer bg-gradient-to-r from-primary via-white to-primary bg-[length:200%_100%] bg-clip-text text-transparent">
+            ★ ЭЛИТНЫЙ КЛУБ ЗНАКОМСТВ ★
           </p>
-          <div className="mt-8 flex items-center justify-center gap-2">
-            <div className="h-px w-16 bg-primary animate-shimmer bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%]"></div>
-            <Icon name="Heart" className="text-primary" size={24} />
-            <div className="h-px w-16 bg-primary animate-shimmer bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%]"></div>
+          <p className="text-xl md:text-2xl text-white/95 font-light tracking-[0.3em] drop-shadow-lg uppercase">
+            Подбор достойных кандидатов премиум-класса
+          </p>
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <div className="h-1 w-20 bg-primary animate-shimmer bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%]"></div>
+            <Icon name="Heart" className="text-primary animate-pulse" size={32} />
+            <Icon name="Gem" className="text-primary" size={32} />
+            <Icon name="Heart" className="text-primary animate-pulse" size={32} />
+            <div className="h-1 w-20 bg-primary animate-shimmer bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%]"></div>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          <Card className="p-8 border-2 border-primary/20 shadow-2xl hover:shadow-primary/20 transition-all duration-300 animate-scale-in">
+          <Card className="p-8 border-4 border-primary shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:shadow-[0_0_50px_rgba(212,175,55,0.8)] transition-all duration-300 animate-scale-in bg-gradient-to-br from-card via-card to-primary/5">
             <div className="text-center mb-6">
-              <div className="inline-block p-4 bg-secondary/10 rounded-full mb-4">
-                <Icon name="User" className="text-secondary" size={48} />
+              <div className="inline-block p-5 bg-gradient-to-br from-primary to-secondary rounded-full mb-4 shadow-xl animate-pulse">
+                <Icon name="Crown" className="text-white" size={56} />
               </div>
-              <h2 className="text-4xl font-bold text-secondary mb-2">Невеста</h2>
-              <p className="text-muted-foreground">Загрузите фотографию невесты</p>
+              <h2 className="text-5xl font-bold text-secondary mb-3 tracking-wider">👰 НЕВЕСТА 👰</h2>
+              <p className="text-lg font-semibold text-primary uppercase tracking-widest">★ VIP Персона ★</p>
+              <p className="text-muted-foreground mt-2">Загрузите фотографию невесты</p>
             </div>
 
             <div className="space-y-6">
@@ -135,10 +146,11 @@ const Index = () => {
                   </Button>
                 </div>
               ) : (
-                <label className="flex flex-col items-center justify-center h-80 border-4 border-dashed border-primary/40 rounded-lg cursor-pointer hover:border-primary transition-all hover:bg-primary/5">
-                  <Icon name="Upload" className="text-primary mb-4" size={48} />
-                  <span className="text-lg font-medium text-foreground">Нажмите для загрузки</span>
-                  <span className="text-sm text-muted-foreground mt-2">Принимаются только фото женщин</span>
+                <label className="flex flex-col items-center justify-center h-80 border-4 border-dashed border-primary rounded-lg cursor-pointer hover:border-primary transition-all hover:bg-primary/10 bg-gradient-to-br from-transparent to-primary/5 shadow-inner">
+                  <Icon name="Sparkles" className="text-primary mb-2 animate-pulse" size={40} />
+                  <Icon name="Upload" className="text-primary mb-4" size={56} />
+                  <span className="text-xl font-bold text-primary uppercase tracking-wider">✨ Нажмите для загрузки ✨</span>
+                  <span className="text-sm text-muted-foreground mt-3 font-semibold">⚠️ Принимаются только фото женщин ⚠️</span>
                   <input
                     type="file"
                     className="hidden"
@@ -150,19 +162,21 @@ const Index = () => {
             </div>
           </Card>
 
-          <Card className="p-8 border-2 border-primary/20 shadow-2xl hover:shadow-primary/20 transition-all duration-300 animate-scale-in" style={{ animationDelay: '0.1s' }}>
+          <Card className="p-8 border-4 border-primary shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:shadow-[0_0_50px_rgba(212,175,55,0.8)] transition-all duration-300 animate-scale-in bg-gradient-to-br from-card via-card to-primary/5" style={{ animationDelay: '0.1s' }}>
             <div className="text-center mb-6">
-              <div className="inline-block p-4 bg-secondary/10 rounded-full mb-4">
-                <Icon name="Users" className="text-secondary" size={48} />
+              <div className="inline-block p-5 bg-gradient-to-br from-secondary to-primary rounded-full mb-4 shadow-xl animate-pulse">
+                <Icon name="Users" className="text-white" size={56} />
               </div>
-              <h2 className="text-4xl font-bold text-secondary mb-2">Женихи</h2>
-              <p className="text-muted-foreground">Загрузите фотографии кандидатов</p>
+              <h2 className="text-5xl font-bold text-secondary mb-3 tracking-wider">🤵 ЖЕНИХИ 🤵</h2>
+              <p className="text-lg font-semibold text-primary uppercase tracking-widest">★ Элитные кандидаты ★</p>
+              <p className="text-muted-foreground mt-2">Загрузите фотографии кандидатов</p>
             </div>
 
-            <label className="flex flex-col items-center justify-center h-80 border-4 border-dashed border-primary/40 rounded-lg cursor-pointer hover:border-primary transition-all hover:bg-primary/5">
-              <Icon name="Upload" className="text-primary mb-4" size={48} />
-              <span className="text-lg font-medium text-foreground">Добавить кандидата</span>
-              <span className="text-sm text-muted-foreground mt-2">Принимаются только фото мужчин</span>
+            <label className="flex flex-col items-center justify-center h-80 border-4 border-dashed border-primary rounded-lg cursor-pointer hover:border-primary transition-all hover:bg-primary/10 bg-gradient-to-br from-transparent to-primary/5 shadow-inner">
+              <Icon name="Star" className="text-primary mb-2 animate-pulse" size={40} />
+              <Icon name="Upload" className="text-primary mb-4" size={56} />
+              <span className="text-xl font-bold text-primary uppercase tracking-wider">💫 Добавить кандидата 💫</span>
+              <span className="text-sm text-muted-foreground mt-3 font-semibold">⚠️ Принимаются только фото мужчин ⚠️</span>
               <input
                 type="file"
                 className="hidden"
@@ -176,11 +190,19 @@ const Index = () => {
         {groomPhotos.length > 0 && (
           <div className="animate-fade-in">
             <div className="text-center mb-12">
-              <h2 className="text-5xl font-bold mb-4 text-foreground">Галерея кандидатов</h2>
-              <div className="flex items-center justify-center gap-2">
-                <div className="h-px w-24 bg-primary"></div>
-                <Icon name="Crown" className="text-primary" size={24} />
-                <div className="h-px w-24 bg-primary"></div>
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <Icon name="Sparkles" className="text-primary animate-pulse" size={40} />
+                <Icon name="Crown" className="text-primary" size={48} />
+                <Icon name="Sparkles" className="text-primary animate-pulse" size={40} />
+              </div>
+              <h2 className="text-6xl font-bold mb-4 text-foreground tracking-wider">👑 ГАЛЕРЕЯ КАНДИДАТОВ 👑</h2>
+              <p className="text-2xl font-bold text-primary uppercase tracking-widest mb-4">★ Премиум коллекция ★</p>
+              <div className="flex items-center justify-center gap-3">
+                <div className="h-1 w-32 bg-primary animate-shimmer bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%]"></div>
+                <Icon name="Gem" className="text-primary" size={32} />
+                <Icon name="Heart" className="text-primary animate-pulse" size={32} />
+                <Icon name="Gem" className="text-primary" size={32} />
+                <div className="h-1 w-32 bg-primary animate-shimmer bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%]"></div>
               </div>
             </div>
 
@@ -188,7 +210,7 @@ const Index = () => {
               {groomPhotos.map((photo, index) => (
                 <Card 
                   key={photo.id} 
-                  className="overflow-hidden border-2 border-primary/20 hover:border-primary transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 animate-scale-in group"
+                  className="overflow-hidden border-4 border-primary hover:border-secondary transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_40px_rgba(212,175,55,0.9)] animate-scale-in group bg-gradient-to-br from-card to-primary/10"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="relative">
@@ -207,10 +229,16 @@ const Index = () => {
                       <Icon name="Trash2" size={20} />
                     </Button>
                   </div>
-                  <div className="p-6 bg-card">
+                  <div className="p-6 bg-gradient-to-br from-card to-primary/10">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-xl font-semibold">Кандидат #{index + 1}</h3>
-                      <Icon name="Heart" className="text-primary" size={20} />
+                      <div>
+                        <h3 className="text-2xl font-bold text-secondary tracking-wider">🎩 Кандидат #{index + 1}</h3>
+                        <p className="text-sm font-bold text-primary uppercase tracking-widest mt-1">★ VIP ★</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <Icon name="Star" className="text-primary animate-pulse" size={24} />
+                        <Icon name="Heart" className="text-primary" size={24} />
+                      </div>
                     </div>
                   </div>
                 </Card>
@@ -220,9 +248,15 @@ const Index = () => {
         )}
       </div>
 
-      <footer className="bg-secondary text-secondary-foreground py-8 mt-16">
+      <footer className="bg-gradient-to-r from-secondary via-primary to-secondary text-secondary-foreground py-12 mt-16 border-t-4 border-primary shadow-[0_-10px_40px_rgba(212,175,55,0.3)]">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-lg font-light">Сделано с любовью 💖 для создания счастливых пар</p>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Icon name="Sparkles" className="text-white animate-pulse" size={32} />
+            <Icon name="Heart" className="text-white" size={40} />
+            <Icon name="Sparkles" className="text-white animate-pulse" size={32} />
+          </div>
+          <p className="text-2xl font-bold tracking-widest uppercase mb-2">★★★ EXCLUSIVE MATCHMAKING ★★★</p>
+          <p className="text-lg font-light tracking-wide">💎 Сделано с любовью для создания элитных счастливых пар 💎</p>
         </div>
       </footer>
     </div>
