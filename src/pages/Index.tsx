@@ -83,48 +83,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
-      <div 
-        className="relative h-[70vh] bg-background flex items-center justify-center overflow-hidden"
-      >
-        <div className="absolute inset-0 flex items-start justify-center pt-8">
-          <div className="relative w-full max-w-2xl aspect-square">
-            <img 
-              src="https://cdn.poehali.dev/projects/8ef30259-3f03-48a0-9e3b-c6a8258072d4/files/e3a91e57-af3a-4a19-b77c-cc96b07f7c92.jpg"
-              alt="Лариса Гузеева"
-              className="absolute inset-0 w-full h-full object-cover animate-[talking_1s_ease-in-out_infinite]"
-            />
-            <img 
-              src="https://cdn.poehali.dev/projects/8ef30259-3f03-48a0-9e3b-c6a8258072d4/files/245a7786-5245-4119-91b0-d7f75ef5a54d.jpg"
-              alt="Лариса Гузеева говорит"
-              className="absolute inset-0 w-full h-full object-cover animate-[talking-reverse_1s_ease-in-out_infinite]"
-            />
-          </div>
+      <div className="relative h-[50vh] bg-background flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img 
+            src="https://cdn.poehali.dev/files/Yule4TxCtW0.jpg"
+            alt="Лариса Гузеева"
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
-        
-        <div className="relative z-10 text-center px-4 animate-fade-in">
-          <div className="mb-8 flex items-center justify-center gap-4">
-            <Icon name="Sparkles" className="text-primary animate-pulse" size={48} />
-            <Icon name="Crown" className="text-primary" size={56} />
-            <Icon name="Sparkles" className="text-primary animate-pulse" size={48} />
-          </div>
-          <h1 className="text-8xl md:text-9xl font-bold text-white mb-4 drop-shadow-2xl tracking-wider">
-            💎 ДАВАЙ ПОЖЕНИМ! 💎
-          </h1>
-          <p className="text-3xl md:text-4xl text-primary font-bold tracking-widest drop-shadow-lg mb-2 animate-shimmer bg-gradient-to-r from-primary via-white to-primary bg-[length:200%_100%] bg-clip-text text-transparent">
-            ★ ЭЛИТНЫЙ КЛУБ ЗНАКОМСТВ ★
-          </p>
-          <p className="text-xl md:text-2xl text-white/95 font-light tracking-[0.3em] drop-shadow-lg uppercase">
-            Подбор достойных кандидатов премиум-класса
-          </p>
-          <div className="mt-8 flex items-center justify-center gap-3">
-            <div className="h-1 w-20 bg-primary animate-shimmer bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%]"></div>
-            <Icon name="Heart" className="text-primary animate-pulse" size={32} />
-            <Icon name="Gem" className="text-primary" size={32} />
-            <Icon name="Heart" className="text-primary animate-pulse" size={32} />
-            <div className="h-1 w-20 bg-primary animate-shimmer bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%]"></div>
-          </div>
-        </div>
       </div>
 
       <div className="container mx-auto px-4 py-16">
